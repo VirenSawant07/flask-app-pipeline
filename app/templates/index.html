@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevSecOps Platform | Next-Gen Security</title>
+    <!-- Modern Web Typography: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Abstract Background Elements -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <span class="logo-icon"></span>
+            ShieldCore
+        </div>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="/api/v1/status" target="_blank">System Status</a>
+            <a href="/health" target="_blank">Health Check</a>
+            <button class="btn-primary">Get Started</button>
+        </div>
+    </nav>
+
+    <main class="hero">
+        <div class="hero-content">
+            <div class="badge">v1.0.0 Stable Release</div>
+            <h1>Secure your pipeline<br><span class="highlight">before it's too late.</span></h1>
+            <p>End-to-end DevSecOps integration. Automated vulnerability scanning, CodeQL analysis, and SBOM generation baked directly into your workflow.</p>
+            
+            <div class="cta-group">
+                <button class="btn-primary btn-large">Deploy Now</button>
+                <button class="btn-secondary btn-large">View Documentation</button>
+            </div>
+        </div>
+
+        <div class="glass-card terminal-card">
+            <div class="terminal-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+            </div>
+            <div class="terminal-body">
+                <p><span class="prompt">$</span> trivy image flask-devsecops-app:latest</p>
+                <p class="output success">✔ Vulnerabilities: 0 CRITICAL, 0 HIGH</p>
+                <p><span class="prompt">$</span> terraform apply</p>
+                <p class="output success">✔ Apply complete! Resources: 15 added.</p>
+                <p><span class="prompt">$</span> system status</p>
+                <p class="output success">✔ Environment: {{ environment | default('production') }}</p>
+            </div>
+        </div>
+    </main>
+
+    <section id="features" class="features-section">
+        <div class="glass-card feature-card">
+            <div class="feature-icon">🛡️</div>
+            <h3>Shift-Left Security</h3>
+            <p>Identify vulnerabilities in dependencies and custom code directly in your pull requests using Bandit and CodeQL.</p>
+        </div>
+        <div class="glass-card feature-card">
+            <div class="feature-icon">📦</div>
+            <h3>SBOM Generation</h3>
+            <p>Maintain complete transparency of your supply chain. Generate CycloneDX artifacts on every successful build.</p>
+        </div>
+        <div class="glass-card feature-card">
+            <div class="feature-icon">☁️</div>
+            <h3>IaC Scanning</h3>
+            <p>Prevent misconfigurations from reaching production. Scan your Terraform files before AWS ECS provisioning.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 ShieldCore Inc. Built with Python & Flask.</p>
+    </footer>
+</body>
+</html>

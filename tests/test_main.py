@@ -10,7 +10,7 @@ def client():
 def test_index(client):
     rv = client.get("/")
     assert rv.status_code == 200
-    assert b"Welcome to the DevSecOps Flask App!" in rv.data
+    assert b"DevSecOps Platform" in rv.data
 
 def test_health(client):
     rv = client.get("/health")

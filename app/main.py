@@ -1,4 +1,4 @@
-from flask import jsonify
+from flask import jsonify, render_template
 from . import create_app
 import os
 
@@ -7,7 +7,7 @@ app = create_app(config_name)
 
 @app.route("/")
 def index():
-    return jsonify({"message": "Welcome to the DevSecOps Flask App!"})
+    return render_template('index.html', environment=config_name)
 
 @app.route("/health")
 def health():
