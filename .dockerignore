@@ -1,0 +1,27 @@
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Tests
+tests/
+.pytest_cache/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Infra
+infra/
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+# IDEs
+.idea/
+.vscode/
+
+# GitHub Actions
+.github/
