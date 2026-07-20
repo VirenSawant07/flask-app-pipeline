@@ -6,6 +6,10 @@ This is a production-ready, security-hardened Python Flask web application compl
 
 ```
 ├── app/                      # Flask application code
+│   ├── templates/            # HTML frontend templates
+│   │   └── index.html        # Premium landing page
+│   ├── static/               # Static assets
+│   │   └── css/style.css     # Vanilla CSS styling
 │   ├── __init__.py           # App initialization
 │   ├── main.py               # Routes and API endpoints
 │   └── config.py             # Environment configurations
