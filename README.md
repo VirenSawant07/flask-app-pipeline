@@ -1,11 +1,10 @@
 # Flask DevSecOps App
 
-[![DevSecOps Pipeline](https://github.com/VirenSawant07/secure-cicd-pipeline/actions/workflows/devsecops-pipeline.yml/badge.svg)](https://github.com/VirenSawant07/secure-cicd-pipeline/actions/workflows/devsecops-pipeline.yml)
-
-## Project Structure
+[![DevSecOps Pipeline](https://github.com/VirenSawant07/flask-app-pipeline/actions/workflows/devsecops-pipeline.yml/badge.svg)](https://github.com/VirenSawant07/flask-app-pipeline/actions/workflows/devsecops-pipeline.yml)
 
 This is a production-ready, security-hardened Python Flask web application complete with a 6-stage automated DevSecOps CI/CD pipeline and Infrastructure as Code (IaC) using AWS ECS Fargate and Terraform.
 
+## Project Structure
 
 ```
 ├── app/                      # Flask application code
@@ -89,6 +88,7 @@ The GitHub Actions pipeline (`devsecops-pipeline.yml`) runs on push and pull req
 4. **Docker Build**: Builds and saves the Docker image as an artifact.
 5. **IaC Scan**: Scans the Terraform code using Trivy.
 6. **Container Scan**: Scans the built Docker image using Trivy and generates a CycloneDX SBOM.
+
 ```mermaid
 flowchart LR
     A[Lint + pytest] --> B[Bandit + Trivy FS]
