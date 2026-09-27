@@ -1,8 +1,11 @@
 # Flask DevSecOps App
 
-This is a production-ready, security-hardened Python Flask web application complete with a 6-stage automated DevSecOps CI/CD pipeline and Infrastructure as Code (IaC) using AWS ECS Fargate and Terraform.
+[![DevSecOps Pipeline](https://github.com/VirenSawant07/secure-cicd-pipeline/actions/workflows/devsecops-pipeline.yml/badge.svg)](https://github.com/VirenSawant07/secure-cicd-pipeline/actions/workflows/devsecops-pipeline.yml)
 
 ## Project Structure
+
+This is a production-ready, security-hardened Python Flask web application complete with a 6-stage automated DevSecOps CI/CD pipeline and Infrastructure as Code (IaC) using AWS ECS Fargate and Terraform.
+
 
 ```
 ├── app/                      # Flask application code
@@ -67,7 +70,7 @@ docker run -p 5000:5000 flask-devsecops-app
 
 ## Infrastructure
 
-The application is deployed using AWS ECS Fargate. The infrastructure is provisioned using Terraform in the `infra/` directory.
+The infrastructure for AWS ECS Fargate (ECR, ALB, security groups) is defined with Terraform in the `infra/` directory. The Terraform is validated and security-scanned in CI; I haven't kept it deployed, to avoid AWS costs.
 
 To deploy:
 ```bash
@@ -86,3 +89,22 @@ The GitHub Actions pipeline (`devsecops-pipeline.yml`) runs on push and pull req
 4. **Docker Build**: Builds and saves the Docker image as an artifact.
 5. **IaC Scan**: Scans the Terraform code using Trivy.
 6. **Container Scan**: Scans the built Docker image using Trivy and generates a CycloneDX SBOM.
+```mermaid
+flowchart LR
+    A[Lint + pytest] --> B[Bandit + Trivy FS]
+    A --> C[CodeQL]
+    B --> D[Docker build]
+    D --> E[Trivy image scan + SBOM]
+    F[Trivy IaC scan]
+```
+
+## ✅ Results
+- 6-stage pipeline runs in about **2 minutes** on every push and pull request to `main`
+- Code, dependencies, Terraform and the final image are all scanned; findings go to the GitHub **Security** tab, with a CycloneDX SBOM per run
+
+## 🔒 Design decision
+Scans currently **report** findings (`exit-code: 0`) instead of failing the build. Next step: fail on `CRITICAL` issues in the container scan.
+
+## 🔭 What's next
+- Fail the build on CRITICAL vulnerabilities
+- Deploy automatically to ECS after a green pipeline, using GitHub OIDC (no stored AWS keys)
